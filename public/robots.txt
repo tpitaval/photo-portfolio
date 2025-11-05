@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://example.com/sitemap-index.xml
+Sitemap: https://photo-portfolio-3m2w.onrender.com/sitemap-index.xml
 
