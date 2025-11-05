@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import SectionReveal from "../components/SectionReveal.jsx";
+import ContactForm from "../components/ContactForm.jsx";
+---
+<BaseLayout title="Contact – Portfolio" description="Get in touch.">
+  <Header />
+  <main class="pt-24 container-page">
+    <SectionReveal>
+      <h1 class="h2 font-semibold">Contact me</h1>
+    </SectionReveal>
+    <SectionReveal>
+      <p class="opacity-80 mb-6">For commissions, collaborations, or just to say hello.</p>
+    </SectionReveal>
+    <SectionReveal>
+      <ContactForm />
+    </SectionReveal>
+    <p class="mt-6 text-sm text-black/70">
+      Vous préférez Instagram ?
+      <a href="https://www.instagram.com/pit.production/" target="_blank" rel="noopener" class="underline">Écrivez-moi sur @pit.production</a>.
+    </p>
+  </main>
+  <Footer />
+</BaseLayout>
+

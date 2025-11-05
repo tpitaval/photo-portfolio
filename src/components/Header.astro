@@ -1,0 +1,31 @@
+---
+import { SITE } from "../config/site";
+import Logo from "./Logo.astro";
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/work', label: 'Work' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+<header id="site-header" class="fixed top-0 inset-x-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-paper/70 bg-paper/90 border-b border-ink/10">
+  <nav class="container-page flex items-center justify-between h-16">
+    <a href="/" class="flex items-center" aria-label="PIT.PROD – Home">
+      <Logo height={32} />
+    </a>
+    <ul class="flex items-center gap-6">
+      {links.map((l) => (
+        <li><a class="hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60" href={l.href}>{l.label}</a></li>
+      ))}
+      <li>
+        <a href={SITE.instagram} target="_blank" rel="noopener" aria-label="Instagram PIT Production" class="hover:opacity-80">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm5 5.5A5.5 5.5 0 1 0 17.5 13 5.5 5.5 0 0 0 12 7.5Z"/>
+          </svg>
+          <span class="sr-only">Instagram</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+

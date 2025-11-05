@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE } from "../config/site";
+const T = "About me";
+const D = "Photographer & filmmaker based near Lille, France. Events and action sports. Since 2023.";
+---
+<BaseLayout title={`${T} — ${SITE.name}`} description={D}>
+  <Header />
+  <section class="bg-paper text-ink">
+    <div class="container max-w-5xl py-[clamp(48px,8vw,96px)] grid gap-10 md:grid-cols-12">
+      <aside class="md:col-span-4">
+        <div class="aspect-[3/4] w-full rounded-2xl bg-black/5 overflow-hidden">
+          <img src="/images/about/portrait.jpg" alt="Thomas Pitaval" class="h-full w-full object-cover" loading="lazy" />
+        </div>
+        <ul class="mt-6 space-y-2 text-sm">
+          <li><strong>Based:</strong> {SITE.region}</li>
+          <li><strong>Since:</strong> 2023</li>
+          <li><strong>Instagram:</strong> <a class="underline" href={SITE.instagram} target="_blank" rel="noopener">@pit.production</a></li>
+        </ul>
+      </aside>
+      <article class="md:col-span-8 space-y-6">
+        <h1 class="text-[clamp(2.4rem,6vw,4rem)] font-semibold leading-tight">About</h1>
+        <p>I’m <strong>Thomas Pitaval</strong>, an independent photographer and filmmaker. Since 2023, I’ve been capturing intense moments across <strong>events</strong>, <strong>action sports</strong>, and <strong>artistic projects</strong>.</p>
+        <p>My goal: create honest, graphic, and dynamic images. Careful preparation, controlled lighting, and agility on set.</p>
+        <h2 class="text-2xl font-semibold">Services</h2>
+        <ul class="list-disc pl-6">
+          <li>Photo/video reportage</li>
+          <li>Short formats for social (9:16 / 1:1 / 16:9)</li>
+          <li>Retouching and optimized exports</li>
+        </ul>
+        <div class="flex gap-3 pt-2">
+          <a href="/work" class="btn-solid rounded-xl">View my work</a>
+          <a href="/contact" class="btn-ghost rounded-xl">Contact me</a>
+          <a href={SITE.instagram} target="_blank" rel="noopener" class="btn-solid rounded-xl">Instagram</a>
+        </div>
+      </article>
+    </div>
+  </section>
+  <Footer />
+</BaseLayout>
+

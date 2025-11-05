@@ -1,0 +1,44 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import SectionReveal from "../../components/SectionReveal.jsx";
+import LightboxModal from "../../components/LightboxModal.jsx";
+import GalleryWithPopup from "../../components/GalleryWithPopup.jsx";
+
+// Generate static paths for all markdown projects
+export async function getStaticPaths() {
+  const modules = import.meta.glob("../../content/work/*.md");
+  const paths = Object.keys(modules).map((p) => {
+    const slug = p.split("/").pop().replace(".md", "");
+    return { params: { slug } };
+  });
+  return paths;
+}
+
+const { slug } = Astro.params;
+const entry = await import(`../../content/work/${slug}.md`);
+const { title, category, year, location, cover, gallery = [], description } = entry.frontmatter;
+---
+<BaseLayout title={`${title} – Portfolio`} description={description} ogImage={cover}>
+  <Header />
+  <main class="pt-24">
+    <section class="container-page max-w-4xl space-y-6">
+      <SectionReveal>
+        <h1 class="h2 font-semibold">{title}</h1>
+      </SectionReveal>
+      <p class="opacity-80">{category} · {year} · {location}</p>
+    </section>
+    <section class="container-page mt-8 max-w-4xl">
+      <img src={cover} alt={title} class="rounded-2xl shadow-soft w-full h-auto block" loading="eager" />
+    </section>
+    <section class="container-page mt-8 max-w-3xl">
+      <p>{description}</p>
+    </section>
+    <section class="container-page mt-12 grid sm:grid-cols-2 gap-6">
+      <GalleryWithPopup client:load images={gallery} alt={title} />
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+

@@ -1,0 +1,21 @@
+---
+import { SITE } from "../config/site";
+---
+<footer class="mt-24 bg-ink text-paper">
+  <div class="container-page py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+    <a href="/" class="flex items-center" aria-label="PIT.PROD – Home">
+      <img src="/images/filigrane%20full%20whitez.png" alt="PIT.PROD" height="32" style="height:32px;width:auto;" loading="eager" />
+    </a>
+    <p class="opacity-80">© {new Date().getFullYear()} {SITE.name}. All rights reserved.</p>
+    <div class="flex items-center gap-4">
+      <a class="hover:text-accent" href={`mailto:${SITE.email}`}>{SITE.email}</a>
+      <a href={SITE.instagram} target="_blank" rel="noopener" aria-label="Instagram PIT Production" class="hover:opacity-80">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm5 5.5A5.5 5.5 0 1 0 17.5 13 5.5 5.5 0 0 0 12 7.5Z"/>
+        </svg>
+        <span class="sr-only">Instagram</span>
+      </a>
+    </div>
+  </div>
+</footer>
+

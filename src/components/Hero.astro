@@ -1,0 +1,26 @@
+---
+const { title = 'Just a guy trying to make art with an expensive camera', subtitle = 'with an expensive camera' } = Astro.props;
+---
+<section class="relative min-h-[90vh] flex items-center">
+  <div class="absolute inset-0 pointer-events-none -z-10">
+    <div class="w-full h-full bg-gradient-to-br from-gray-200/70 via-gray-400/40 to-gray-700/30 backdrop-blur-xl bg-clip-padding border border-gray-300/20 shadow-xl" style="backdrop-filter:saturate(140%) blur(16px);-webkit-backdrop-filter:saturate(140%) blur(16px);"></div>
+    <div class="w-full h-full bg-[url('/images/hero-bg.svg')] bg-cover bg-center will-change-transform opacity-15 mix-blend-multiply" aria-hidden="true"></div>
+  </div>
+  <div class="container-page relative">
+    <div class="max-w-3xl space-y-6 pin-line">
+      <div>
+        <a href="/work" class="btn btn-white">
+          <span class="w-2.5 h-2.5 rounded-full bg-green-500 animate-heartbeat glow-green"></span>
+          <span>Available for Inquiries</span>
+        </a>
+      </div>
+      <h1 class="h1 font-semibold">{title}</h1>
+      <p class="text-5xl opacity-80">{subtitle}</p>
+      <div class="flex gap-3 pt-2">
+        <a href="#recent" class="btn btn-primary">View Work</a>
+        <a href="/contact" class="btn btn-ghost">Contact</a>
+      </div>
+    </div>
+  </div>
+</section>
+

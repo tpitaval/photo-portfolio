@@ -1,0 +1,31 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import SectionReveal from "../components/SectionReveal.jsx";
+import GalleryGrid from "../components/GalleryGrid.jsx";
+import FilterBar from "../components/FilterBar.jsx";
+import FilterIsland from "../react/FilterIsland.jsx";
+
+const modules = import.meta.glob('../content/work/*.md', { eager: true });
+const all = Object.entries(modules).map(([path, mod]) => {
+  const slug = path.split('/').pop().replace('.md','');
+  const { title, category, cover } = mod.frontmatter;
+  return { slug, title, category, cover };
+});
+const categories = ['All', 'Events', 'Portraits', 'Sports', 'Commercial', 'Travel'];
+---
+<BaseLayout title="Work – Portfolio" description="Selected photography projects.">
+  <Header />
+  <main class="pt-24 container-page space-y-8">
+    <SectionReveal>
+      <h1 class="h2 font-semibold">My Work</h1>
+    </SectionReveal>
+
+    <SectionReveal>
+      <FilterIsland client:load categories={categories} items={all} />
+    </SectionReveal>
+  </main>
+  <Footer />
+</BaseLayout>
+

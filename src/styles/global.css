@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+html { scroll-behavior: auto; }
+body { @apply bg-paper text-ink font-sans antialiased; }
+
+.btn { @apply inline-flex items-center gap-2 rounded-full px-5 py-2.5 transition duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60; }
+
+/* Liquid glass base look (Apple-like) */
+.btn { backdrop-filter: saturate(140%) blur(8px); -webkit-backdrop-filter: saturate(140%) blur(8px); box-shadow: 0 8px 24px rgba(0,0,0,.06), inset 0 1px 0 rgba(255,255,255,.25); }
+.btn:hover { box-shadow: 0 10px 28px rgba(0,0,0,.08), inset 0 1px 0 rgba(255,255,255,.35); }
+.btn:active { transform: translateY(1px) scale(0.99); }
+
+/* Primary bubble with subtle glass tint */
+.btn-primary { @apply text-white border border-white/20 shadow-md; }
+.btn-primary { @apply bg-primary/80 hover:bg-primary/90; }
+
+/* Frosted/ghost bubble */
+.btn-ghost { @apply text-ink bg-white/30 hover:bg-white/40 border border-white/40 shadow-sm; }
+
+/* Success/green bubble */
+.btn-success { @apply bg-green-600/85 text-white hover:bg-green-700 border border-white/20 shadow-md; }
+
+/* Solid pure white bubble */
+.btn-white { @apply text-ink border border-white/60 shadow-md; }
+.btn-white { background-color: #FFFFFF; }
+
+/* Heartbeat animation */
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  14% { transform: scale(1.08); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.08); }
+  70% { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+.animate-heartbeat { animation: heartbeat 1.6s ease-in-out infinite; transform-origin: center; }
+
+/* Glow synced with heartbeat */
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+  14% { box-shadow: 0 0 22px 6px rgba(34, 197, 94, 0.95); }
+  28% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+  42% { box-shadow: 0 0 22px 6px rgba(34, 197, 94, 0.95); }
+  70% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+.glow-green { animation: pulseGlow 1.6s ease-in-out infinite; }
+
+.container-page { @apply container mx-auto; }
+
+h1, .h1 { font-size: theme('fontSize.h1'); line-height: 1.05; letter-spacing: -0.02em; }
+h2, .h2 { font-size: theme('fontSize.h2'); line-height: 1.1; letter-spacing: -0.01em; }
+
+.ratio-4-3 { position: relative; }
+.ratio-4-3::before { content: ""; display: block; padding-bottom: calc(3 / 4 * 100%); }
+.ratio-inner { position: absolute; inset: 0; }
+
+.card-overlay { background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%); }
+
+/* Header compact variant */
+#site-header.is-compact nav { height: 3rem; }
+
