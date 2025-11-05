@@ -23,3 +23,5 @@ export default function LightboxModal({ isOpen, onClose, imageSrc, alt }) {
   );
 }
 
+
+

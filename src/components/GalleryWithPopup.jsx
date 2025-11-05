@@ -44,3 +44,5 @@ export default function GalleryWithPopup({ images = [], alt }) {
   );
 }
 
+
+
