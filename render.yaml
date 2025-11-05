@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: photo-portfolio
+    env: static
+    buildCommand: npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: NODE_VERSION
+        value: 20.x
+

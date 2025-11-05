@@ -4,7 +4,7 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'https://photo-portfolio-3m2w.onrender.com',
   output: 'static',
   integrations: [
     react(),
