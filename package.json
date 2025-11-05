@@ -7,7 +7,8 @@
     "dev": "astro dev",
     "build": "npx astro build",
     "preview": "astro preview",
-    "format": "prettier -w ."
+    "format": "prettier -w .",
+    "clean": "node -e \"require('fs').rmSync('node_modules', {recursive: true, force: true})\" && npm install"
   },
   "dependencies": {
     "astro": "^4.14.0",
