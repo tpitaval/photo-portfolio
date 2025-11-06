@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 
 export default function ContactForm({ 
@@ -8,6 +8,7 @@ export default function ContactForm({
 }) {
   const [status, setStatus] = useState('idle');
   const [error, setError] = useState('');
+  const formRef = useRef(null);
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -71,7 +72,9 @@ export default function ContactForm({
 
       console.log('EmailJS success:', result);
       setStatus('success');
-      e.currentTarget.reset();
+      if (formRef.current) {
+        formRef.current.reset();
+      }
     } catch (err) {
       console.error('EmailJS error:', err);
       console.error('Full error object:', {
@@ -103,7 +106,7 @@ export default function ContactForm({
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4 max-w-xl">
+    <form ref={formRef} onSubmit={onSubmit} className="space-y-4 max-w-xl">
       <div>
         <label className="block text-sm mb-1" htmlFor="name">Name</label>
         <input id="name" name="name" required className="w-full rounded-xl border border-ink/20 bg-white px-3 py-2" />
