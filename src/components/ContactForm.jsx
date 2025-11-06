@@ -1,14 +1,13 @@
 import { useState } from 'react';
 import emailjs from '@emailjs/browser';
 
-export default function ContactForm() {
+export default function ContactForm({ 
+  serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID,
+  templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+  publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY 
+}) {
   const [status, setStatus] = useState('idle');
   const [error, setError] = useState('');
-  
-  // EmailJS configuration from environment variables
-  const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-  const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -26,13 +25,20 @@ export default function ContactForm() {
     // Check if EmailJS is configured
     if (!serviceId || !templateId || !publicKey) {
       setStatus('idle');
-      setError('Email service is not configured. Please contact the site administrator.');
+      const missing = [];
+      if (!serviceId) missing.push('VITE_EMAILJS_SERVICE_ID');
+      if (!templateId) missing.push('VITE_EMAILJS_TEMPLATE_ID');
+      if (!publicKey) missing.push('VITE_EMAILJS_PUBLIC_KEY');
+      
+      setError(`Email service is not configured. Missing: ${missing.join(', ')}`);
       console.error('EmailJS configuration missing:', {
         serviceId: serviceId || 'MISSING',
         templateId: templateId || 'MISSING',
-        publicKey: publicKey ? 'SET' : 'MISSING'
+        publicKey: publicKey ? 'SET' : 'MISSING',
+        allEnv: import.meta.env
       });
-      console.error('Please set VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, and VITE_EMAILJS_PUBLIC_KEY');
+      console.error('Missing variables:', missing);
+      console.error('Please set these environment variables on Render.com or in .env file');
       return;
     }
 

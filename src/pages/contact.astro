@@ -4,6 +4,13 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import SectionReveal from "../components/SectionReveal.jsx";
 import ContactForm from "../components/ContactForm.jsx";
+
+// Pass environment variables to the React component
+const emailjsConfig = {
+  serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+  templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+  publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+};
 ---
 <BaseLayout title="Contact – Portfolio" description="Get in touch.">
   <Header />
@@ -15,7 +22,7 @@ import ContactForm from "../components/ContactForm.jsx";
       <p class="opacity-80 mb-6">For commissions, collaborations, or just to say hello.</p>
     </SectionReveal>
     <SectionReveal>
-      <ContactForm client:load />
+      <ContactForm client:load {...emailjsConfig} />
     </SectionReveal>
     <p class="mt-6 text-sm text-black/70">
       Prefer Instagram?
