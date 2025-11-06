@@ -11,22 +11,22 @@
     "clean": "node -e \"require('fs').rmSync('node_modules', {recursive: true, force: true})\" && npm install"
   },
   "dependencies": {
-    "astro": "^4.14.0",
     "@astrojs/react": "^3.6.0",
-    "@astrojs/tailwind": "^5.1.0",
     "@astrojs/sitemap": "^3.1.6",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "@astrojs/tailwind": "^5.1.0",
+    "@emailjs/browser": "^4.4.1",
+    "@studio-freight/lenis": "^1.0.36",
+    "astro": "^4.14.0",
     "gsap": "^3.12.5",
-    "@studio-freight/lenis": "^1.0.36"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@types/react": "^18.3.7",
+    "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.13",
     "prettier": "^3.3.3",
-    "@types/react": "^18.3.7",
-    "@types/react-dom": "^18.3.0"
+    "tailwindcss": "^3.4.13"
   }
 }
-
