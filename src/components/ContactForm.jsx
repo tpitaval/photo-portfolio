@@ -27,7 +27,12 @@ export default function ContactForm() {
     if (!serviceId || !templateId || !publicKey) {
       setStatus('idle');
       setError('Email service is not configured. Please contact the site administrator.');
-      console.error('EmailJS configuration missing. Please set VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, and VITE_EMAILJS_PUBLIC_KEY in your .env file.');
+      console.error('EmailJS configuration missing:', {
+        serviceId: serviceId || 'MISSING',
+        templateId: templateId || 'MISSING',
+        publicKey: publicKey ? 'SET' : 'MISSING'
+      });
+      console.error('Please set VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, and VITE_EMAILJS_PUBLIC_KEY');
       return;
     }
 
@@ -49,8 +54,13 @@ export default function ContactForm() {
       e.currentTarget.reset();
     } catch (err) {
       console.error('EmailJS error:', err);
+      console.error('Error details:', {
+        code: err.code,
+        text: err.text,
+        status: err.status
+      });
       setStatus('idle');
-      setError('Submission failed. Please try again later.');
+      setError(err.text || 'Submission failed. Please try again later.');
     }
   }
 
