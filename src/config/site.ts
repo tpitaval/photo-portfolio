@@ -3,7 +3,7 @@ export const SITE = {
   baseUrl: "https://photo-portfolio-3m2w.onrender.com",
   email: "pitproductionpro@gmail.com",
   instagram: "https://www.instagram.com/pit.production/",
-  region: "Région lilloise, France",
+  region: "Near Lille, France",
 };
 
 

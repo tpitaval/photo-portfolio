@@ -4,14 +4,17 @@ import SmoothScroll from "../react/SmoothScroll.jsx";
 const { title = 'Portfolio', description = 'Photography portfolio', ogImage = '/images/og-default.svg' } = Astro.props;
 ---
 <!DOCTYPE html>
-<html lang="fr" class="bg-paper">
+<html lang="en" class="bg-paper">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#FFFFFF" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="any" />
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
     <link rel="preload" as="image" href="/images/og-default.svg" />
 
     <!-- Open Graph / Twitter -->
@@ -30,14 +33,29 @@ const { title = 'Portfolio', description = 'Photography portfolio', ogImage = '/
       "@context":"https://schema.org",
       "@type":"Person",
       "name":"Thomas Pitaval",
-      "jobTitle":"Photographe & Vidéaste",
+      "jobTitle":"Photographer & Filmmaker",
       "url":"https://photo-portfolio-3m2w.onrender.com",
-      "homeLocation":"Région lilloise, France",
+      "homeLocation":"Near Lille, France",
       "sameAs":["https://www.instagram.com/pit.production/"]
     }
     </script>
   </head>
   <body class="min-h-screen bg-paper text-ink">
+    <!-- SVG filter for lens distortion -->
+    <svg class="lens-distortion-svg" aria-hidden="true">
+      <defs>
+        <filter id="lens-distortion" x="0%" y="0%" width="100%" height="100%">
+          <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+        <!-- Barrel distortion approximation -->
+        <filter id="barrel-distortion" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="0.5" result="blur" />
+          <feOffset in="blur" dx="0" dy="0" result="offset" />
+          <feComposite in="SourceGraphic" in2="offset" operator="over" />
+        </filter>
+      </defs>
+    </svg>
     <slot />
     <!-- Smooth scroll & animation island -->
     <SmoothScroll client:load />

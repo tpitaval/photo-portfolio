@@ -24,16 +24,48 @@ const D = "Photographer & filmmaker based near Lille, France. Events and action 
         <h1 class="text-[clamp(2.4rem,6vw,4rem)] font-semibold leading-tight">About</h1>
         <p>I’m <strong>Thomas Pitaval</strong>, an independent photographer and filmmaker. Since 2023, I’ve been capturing intense moments across <strong>events</strong>, <strong>action sports</strong>, and <strong>artistic projects</strong>.</p>
         <p>My goal: create honest, graphic, and dynamic images. Careful preparation, controlled lighting, and agility on set.</p>
-        <h2 class="text-2xl font-semibold">Services</h2>
-        <ul class="list-disc pl-6">
-          <li>Photo/video reportage</li>
-          <li>Short formats for social (9:16 / 1:1 / 16:9)</li>
-          <li>Retouching and optimized exports</li>
-        </ul>
-        <div class="flex gap-3 pt-2">
-          <a href="/work" class="btn-solid rounded-xl">View my work</a>
-          <a href="/contact" class="btn-ghost rounded-xl">Contact me</a>
-          <a href={SITE.instagram} target="_blank" rel="noopener" class="btn-solid rounded-xl">Instagram</a>
+        
+        <div class="space-y-4 pt-6">
+          <div>
+            <h2 class="text-2xl font-semibold mb-2">Services that shape your story</h2>
+            <h3 class="text-lg font-medium opacity-80 mb-4">Creative toolbox</h3>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3">
+                <span class="text-ink/40 mt-1">○</span>
+                <span>Cinematography / Directing</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-ink/40 mt-1">○</span>
+                <span>Creative Direction & Shot Planning</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-ink/40 mt-1">○</span>
+                <span>Video Editing & Motion Design</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-ink/40 mt-1">○</span>
+                <span>Color Grading & Lookbuilding</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-ink/40 mt-1">○</span>
+                <span>Photography & Retouching</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-ink/40 mt-1">○</span>
+                <span>Sound Design & Audio Polish</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-ink/40 mt-1">○</span>
+                <span>Coding Websites & Web Apps</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="flex flex-wrap gap-3 pt-4">
+          <a href="/work" class="btn btn-glass rounded-xl">View my work</a>
+          <a href="/contact" class="btn btn-glass rounded-xl">Contact me</a>
+          <a href={SITE.instagram} target="_blank" rel="noopener" class="btn btn-glass rounded-xl">Instagram</a>
         </div>
       </article>
     </div>

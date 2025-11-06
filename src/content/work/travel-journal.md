@@ -7,7 +7,7 @@ cover: "/images/work/travel-journal/cover.avif"
 gallery:
   - "/images/work/travel-journal/01.avif"
   - "/images/work/travel-journal/02.avif"
-description: "Carnet de voyage, détails et atmosphères d'ailleurs."
+description: "Travel journal, details and atmospheres from elsewhere."
 ---
 
 Text.

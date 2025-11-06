@@ -7,7 +7,7 @@ cover: "/images/work/sports-motion/cover.avif"
 gallery:
   - "/images/work/sports-motion/01.avif"
   - "/images/work/sports-motion/02.avif"
-description: "Vitesse et intensité, capturées avec un sens du détail."
+description: "Speed and intensity, captured with attention to detail."
 ---
 
 Text.

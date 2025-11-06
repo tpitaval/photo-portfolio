@@ -17,7 +17,7 @@ const projects = Object.entries(modules).map(([path, mod]) => {
 <BaseLayout title="Home – Portfolio" description="Recent photography work and stories.">
   <Header />
   <main class="pt-16">
-    <Hero />
+    <Hero projects={projects} />
 
     <section id="recent" class="container-page mt-16 space-y-8">
       <SectionReveal>
@@ -38,7 +38,7 @@ const projects = Object.entries(modules).map(([path, mod]) => {
             <h3 class="text-xl font-semibold">Let’s connect</h3>
             <p class="opacity-80">Available for commissions and collaborations.</p>
           </div>
-          <a href="mailto:hello@example.com" class="btn btn-primary">Email me</a>
+          <a href="/contact" class="btn btn-primary">Email me</a>
         </div>
       </SectionReveal>
     </section>

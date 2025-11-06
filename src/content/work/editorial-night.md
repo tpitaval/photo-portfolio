@@ -7,7 +7,7 @@ cover: "/images/work/editorial-night/cover.avif"
 gallery:
   - "/images/work/editorial-night/01.avif"
   - "/images/work/editorial-night/02.avif"
-description: "Editorial nocturne, néons et contrastes."
+description: "Night editorial, neon lights and contrasts."
 ---
 
 Text.

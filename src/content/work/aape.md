@@ -7,7 +7,7 @@ cover: "/images/work/aape/cover.avif"
 gallery:
   - "/images/work/aape/01.avif"
   - "/images/work/aape/02.avif"
-description: "Editorial commercial autour du basket. Direction artistique, prise de vue, retouche."
+description: "Basketball commercial editorial. Artistic direction, shooting, retouching."
 ---
 
 Project details coming soon.

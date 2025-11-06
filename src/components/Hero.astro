@@ -1,24 +1,54 @@
 ---
-const { title = 'Just a guy trying to make art with an expensive camera', subtitle = 'with an expensive camera' } = Astro.props;
+import ProjectCarousel from './ProjectCarousel.jsx';
+const { title = 'Just a guy trying to make art with an expensive camera', subtitle = 'with an expensive camera', projects = [] } = Astro.props;
 ---
-<section class="relative min-h-[90vh] flex items-center">
-  <div class="absolute inset-0 opacity-15 pointer-events-none mix-blend-multiply">
+<section class="relative min-h-[90vh] flex items-center overflow-hidden hero-glass-bg">
+  <!-- Glass texture background with lens distortion -->
+  <div class="absolute inset-0 glass-background-lens" aria-hidden="true">
+    <div class="glass-texture-layer" style="background-image: url('/images/fond glassv2.png');"></div>
+  </div>
+  
+  <!-- Original background overlay (reduced opacity) -->
+  <div class="absolute inset-0 opacity-10 pointer-events-none mix-blend-multiply">
     <div class="w-full h-full bg-[url('/images/hero-bg.svg')] bg-cover bg-center will-change-transform" aria-hidden="true"></div>
   </div>
-  <div class="container-page relative">
-    <div class="max-w-3xl space-y-6 pin-line">
-      <div>
-        <a href="/work" class="btn btn-white">
-          <span class="w-2.5 h-2.5 rounded-full bg-green-500 animate-heartbeat glow-green"></span>
-          <span>Available for Inquiries</span>
-        </a>
+  
+  <!-- 3D Carousel Background -->
+  {projects && projects.length > 0 && (
+    <div class="absolute inset-0 pointer-events-none opacity-15" style="z-index: 0;">
+      <ProjectCarousel client:load projects={projects} />
+    </div>
+  )}
+  
+  <div class="container-page relative z-10">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="max-w-3xl space-y-6 pin-line">
+        <!-- Liquid Glass Container -->
+        <div class="liquid-glass relative">
+          <div class="liquid-glass-glow"></div>
+          <div class="liquid-glass-border"></div>
+          <div class="liquid-glass-content space-y-6">
+            <div>
+              <a href="/work" class="btn btn-white">
+                <span class="w-2.5 h-2.5 rounded-full bg-green-500 animate-heartbeat glow-green"></span>
+                <span>Available for Inquiries</span>
+              </a>
+            </div>
+            <h1 class="h1 font-semibold text-glass-shimmer">{title}</h1>
+            <p class="text-5xl opacity-80">{subtitle}</p>
+            <div class="flex gap-3 pt-2">
+              <a href="#recent" class="btn btn-primary">View Work</a>
+              <a href="/contact" class="btn btn-ghost">Contact</a>
+            </div>
+          </div>
+        </div>
       </div>
-      <h1 class="h1 font-semibold">{title}</h1>
-      <p class="text-5xl opacity-80">{subtitle}</p>
-      <div class="flex gap-3 pt-2">
-        <a href="#recent" class="btn btn-primary">View Work</a>
-        <a href="/contact" class="btn btn-ghost">Contact</a>
-      </div>
+      <!-- Carousel visible on larger screens on the right -->
+      {projects && projects.length > 0 && (
+        <div class="hidden md:block relative h-[600px]" style="z-index: 1;">
+          <ProjectCarousel client:load projects={projects} />
+        </div>
+      )}
     </div>
   </div>
 </section>
