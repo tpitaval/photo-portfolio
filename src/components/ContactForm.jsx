@@ -1,9 +1,14 @@
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 export default function ContactForm() {
   const [status, setStatus] = useState('idle');
   const [error, setError] = useState('');
-  const formId = import.meta.env.VITE_FORMSPREE_ID;
+  
+  // EmailJS configuration from environment variables
+  const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -11,28 +16,39 @@ export default function ContactForm() {
     setError('');
     const data = Object.fromEntries(new FormData(e.currentTarget).entries());
 
+    // Validate email format
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
       setStatus('idle');
       setError('Please provide a valid email.');
       return;
     }
 
-    if (!formId) {
-      window.location.href = `mailto:pitproductionpro@gmail.com?subject=Portfolio%20Contact&body=${encodeURIComponent(data.message || '')}`;
-      setStatus('success');
+    // Check if EmailJS is configured
+    if (!serviceId || !templateId || !publicKey) {
+      setStatus('idle');
+      setError('Email service is not configured. Please contact the site administrator.');
+      console.error('EmailJS configuration missing. Please set VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, and VITE_EMAILJS_PUBLIC_KEY in your .env file.');
       return;
     }
 
     try {
-      const res = await fetch(`https://formspree.io/f/${formId}`, {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: new FormData(e.currentTarget),
-      });
-      if (!res.ok) throw new Error('Network error');
+      // Send email using EmailJS
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: data.name,
+          from_email: data.email,
+          message: data.message,
+          to_email: 'pitproductionpro@gmail.com', // Recipient email
+        },
+        publicKey // Public key passed as 4th parameter
+      );
+
       setStatus('success');
       e.currentTarget.reset();
     } catch (err) {
+      console.error('EmailJS error:', err);
       setStatus('idle');
       setError('Submission failed. Please try again later.');
     }
